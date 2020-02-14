@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="js/fastclick.js"></script>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        //页面中的所有的元素都取消了click延时问题了
+        if ('addEventListener' in document) {
+            document.addEventListener('DOMContentLoaded', function() {
+                FastClick.attch(document.body);
+            }, false);
+        }
+    </script>
+</body>
+
+</html>

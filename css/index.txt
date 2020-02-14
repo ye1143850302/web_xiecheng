@@ -1,0 +1,368 @@
+/* 因为对样式的整体布局有要求  比如居中 因此在body中同一定义了 */
+
+body {
+    max-width: 600px;
+    min-width: 320px;
+    margin: 0 auto;
+    font: normal 14px/1.5 Tahoma, "Lucida Grande", Verdana, "Microsoft Yahei", STXihei, hei;
+    color: #000;
+    background-color: #f2f2f2;
+    overflow: hidden;
+    /* 去除一些标签的高亮效果 */
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    text-decoration: none;
+    color: #222;
+}
+
+ul li {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* 这样css3模型就可以使得不用纠结padding撑开盒子 */
+
+div {
+    box-sizing: border-box;
+}
+
+
+/* 搜索模块开始 */
+
+.search-index {
+    /* 此处的父级盒子采用布局 */
+    display: flex;
+    /* 固定定位与父级没有关系  以屏幕为准 */
+    position: fixed;
+    top: 0;
+    /* 让盒子居中显示 先走屏幕的50% 再走自身的一半 */
+    left: 50%;
+    transform: translate(-50%);
+    /* 因为该网页的宽度可以随着屏幕的缩放为自适应变化 
+    但在这个过程中盒子的高度不变 因此高度定死 */
+    width: 100%;
+    height: 44px;
+    /* 因为是固定定位 因此一定要给宽度 */
+    max-width: 600px;
+    min-width: 320px;
+    background-color: #f6f6f6;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+
+/* 搜索栏 */
+
+.search {
+    /* 表示该搜索栏占据了除了用户登录模块的所有剩余空间 */
+    flex: 1;
+    position: relative;
+    height: 26px;
+    /* 因为padding是在盒子内部 所以内容能够的宽度为24 */
+    line-height: 24px;
+    padding-left: 25px;
+    border: 1px solid #ccc;
+    margin: 7px 10px;
+    border-radius: 7px;
+    font-size: 12px;
+    color: #666;
+    box-shadow: 0 2px 4px rbga(0, 0, 0, .2);
+}
+
+
+/* 添加小放大镜图片  用伪元素选择器 */
+
+.search::before {
+    content: "";
+    /* 这里不用block是因为before更改为block占一行 文字只能显示在search下面 */
+    /* display: block; */
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    /* 注意这里要添加宽度 因为浮动不占位置 不给宽度就无法显示图片 */
+    width: 15px;
+    height: 15px;
+    background: url(../images/sprite.png)no-repeat -59px -279px;
+    background-size: 104px auto;
+}
+
+
+/* 用户登录 */
+
+.user {
+    width: 44px;
+    height: 44px;
+    /* background-color: purple; */
+    color: #2eaae0;
+    font-size: 12px;
+    text-align: center;
+}
+
+.user::before {
+    /* 此处采用伪元素选择器给该部分添加背景图片 */
+    /* 两倍图 先等比例缩小一半  然后量出图片的大小
+      最后在backgroud-sizing手动缩小精灵图片 */
+    display: block;
+    content: "";
+    width: 23px;
+    height: 23px;
+    background: url(../images/sprite.png) no-repeat -59px -194px;
+    background-size: 104px auto;
+    margin: 5px auto -2px;
+}
+
+
+/* 焦点图部分 */
+
+.focus {
+    margin-top: 44px;
+}
+
+.focus img {
+    width: 100%;
+}
+
+
+/* 局部导航栏部分 */
+
+.local-nav {
+    display: flex;
+    height: 64px;
+    padding: 0px;
+    background-color: #fff;
+    margin: 3px 4px;
+    /* border: 1px solid transparent; */
+    border-radius: 8px;
+}
+
+.local-nav li {
+    flex: 1;
+}
+
+.local-nav a {
+    display: flex;
+    /* 实现文字和图片居中对齐 */
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+}
+
+
+/* nav的小图标 */
+
+
+/* 属性选择器 */
+
+.local-nav li [class^="local-nav-icon"] {
+    width: 32px;
+    height: 32px;
+    background-color: pink;
+    margin-top: 8px;
+    background: url(../images/localnav_bg.png) no-repeat 0 0;
+    background-size: 32px auto;
+}
+
+.local-nav li .local-nav-icon-icon2 {
+    background-position: 0 -32px;
+}
+
+.local-nav li .local-nav-icon-icon3 {
+    background-position: 0 -64px;
+}
+
+.local-nav li .local-nav-icon-icon4 {
+    background-position: 0 -96px;
+}
+
+.local-nav li .local-nav-icon-icon5 {
+    background-position: 0 -128px;
+}
+
+
+/* 主导航栏部分开始 */
+
+nav {
+    border-radius: 8px;
+    margin: 0 4px 3px;
+}
+
+.nav-common {
+    display: flex;
+    height: 88px;
+    background-color: pink;
+    border-radius: 8px;
+}
+
+.nav-common:nth-child(1) {
+    background: -webkit-linear-gradient(left, #fa5a55, #fa994d);
+}
+
+.nav-common:nth-child(2) {
+    background: -webkit-linear-gradient(left, #fa5a55, #fa994d);
+}
+
+.nav-common:nth-child(3) {
+    background: -webkit-linear-gradient(left, #34c2a9, #6cd559);
+}
+
+.nav-common:nth-child(2) {
+    margin: 3px 0;
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* 第二个盒子里面的分布 */
+
+.nav-item a {
+    flex: 1;
+    text-align: center;
+    line-height: 44px;
+    color: #fff;
+    font-size: 14px;
+    /* 文字阴影 */
+    text-shadow: 1px 1px rgba(0, 0, 0, .2);
+}
+
+.nav-item:nth-child(1) a {
+    border: 0;
+    background: url(../images/hotel.png)no-repeat bottom center;
+    background-size: 121px auto;
+}
+
+
+/* 第二个盒子里面的第一个小盒子 */
+
+.nav-item a:nth-child(1) {
+    border-bottom: 1px solid #fff;
+}
+
+
+/* 前两个图片有竖线 */
+
+.nav-item:nth-child(-n+2) {
+    border-right: 1px solid #fff;
+}
+
+
+/* 侧导航栏开始 */
+
+.subnav-entry {
+    border-radius: 8px;
+    background-color: #fff;
+    margin: 0 4px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 5px 0px;
+}
+
+.subnav-entry li {
+    /* 里面的子盒子可以写百分比表示 表示相对于父级 该小盒子占父级的宽度的百分比 */
+    flex: 20%;
+}
+
+.subnav-entry li a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.subnav-entry-icon {
+    width: 28px;
+    height: 28px;
+    margin-top: 4px;
+    background-color: pink;
+    background: url(../images/subnav-bg.png) no-repeat;
+    background-size: 28px auto;
+}
+
+
+/* sales-box部分开始 */
+
+.sales-box {
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+    margin: 4px;
+}
+
+.sales-hd {
+    height: 44px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+
+/* 销售部分的第一个小图片部分 */
+
+.sales-hd h2 {
+    text-indent: -99px;
+    overflow: hidden;
+    position: relative;
+}
+
+.sales-hd h2::after {
+    position: absolute;
+    top: 5px;
+    left: 8px;
+    content: "";
+    width: 79px;
+    height: 15px;
+    background: url(../images/hot.png)no-repeat 0 -20px;
+    background-size: 79px auto;
+}
+
+
+/* 消费部分的右侧获取更多 */
+
+.more {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    background: -webkit-linear-gradient(left, #ff506c, #ff6bc6);
+    border-radius: 15px;
+    padding: 3px 20px 3px 10px;
+    color: #fff;
+}
+
+
+/* 小三角 */
+
+.more::after {
+    content: "";
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    width: 7px;
+    height: 7px;
+    border-top: 2px solid #fff;
+    border-right: 2px solid #fff;
+    transform: rotate(45deg);
+}
+
+
+/* 下面部分 */
+
+.row {
+    display: flex;
+}
+
+.row a {
+    flex: 1;
+    border-bottom: 1px solid #eee;
+}
+
+.row a:nth-child(1) {
+    border-right: 1px solid #eee;
+}
+
+.row a img {
+    width: 100%;
+}
